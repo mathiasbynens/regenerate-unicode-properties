@@ -1,0 +1,1 @@
+module.exports = require('regenerate')(0x9, 0xB, 0x1F);
