@@ -4,6 +4,8 @@ module.exports = [
 	'Binary_Property',
 	'Block',
 	'General_Category',
+	'Line_Break',
 	'Script',
-	'Script_Extensions'
+	'Script_Extensions',
+	'Word_Break'
 ];

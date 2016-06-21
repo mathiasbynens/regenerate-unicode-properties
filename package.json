@@ -15,8 +15,10 @@
     "Binary_Property",
     "Block",
     "General_Category",
+    "Line_Break",
     "Script",
-    "Script_Extensions"
+    "Script_Extensions",
+    "Word_Break"
   ],
   "keywords": [
     "unicode",
@@ -34,13 +36,13 @@
   },
   "bugs": "https://github.com/mathiasbynens/regenerate-unicode-properties/issues",
   "dependencies": {
-    "regenerate": "^1.3.0"
+    "regenerate": "^1.3.1"
   },
   "devDependencies": {
     "ava": "*",
-    "jsesc": "^1.2.0",
-    "mkdirp": "^0.5.1",
-    "unicode-8.0.0": "^0.6.0"
+    "fs-extra": "^0.30.0",
+    "jsesc": "^2.2.0",
+    "unicode-9.0.0": "^0.7.0"
   },
   "scripts": {
     "build": "node build.js",

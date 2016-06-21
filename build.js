@@ -2,9 +2,9 @@
 
 const fs = require('fs');
 const jsesc = require('jsesc');
-const mkdirp = require('mkdirp');
+const emptyDirSync = require('fs-extra').emptyDirSync;
 const regenerate = require('regenerate');
-const unicode = require('unicode-8.0.0');
+const unicode = require('unicode-9.0.0');
 
 /*----------------------------------------------------------------------------*/
 
@@ -43,14 +43,16 @@ regenerate.prototype.toCode = function() {
 const properties = require('./index.js');
 
 for (const property of properties) {
-	// Create the target directory if it doesn’t exist yet
+	// Empty the target directory, or create it if it doesn’t exist yet.
 	const directory = `${ property }`;
-	mkdirp.sync(directory);
+	console.log(`Emptying ${ directory }…`);
+	emptyDirSync(directory);
+	console.assert(unicode[property], `Property ${ property } not found.`);
 	for (const value of unicode[property]) {
 		const fileName = `${ directory }/${ value }.js`;
 		console.log(`Creating ${ fileName }…`);
 		const codePoints = require(
-			`unicode-8.0.0/${ property }/${ value }/code-points.js`
+			`unicode-9.0.0/${ property }/${ value }/code-points.js`
 		);
 		const set = regenerate(codePoints);
 		const output = `module.exports = ${ set.toCode() };\n`;
