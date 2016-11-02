@@ -1,6 +1,6 @@
 # regenerate-unicode-properties [![Build status](https://travis-ci.org/mathiasbynens/regenerate-unicode-properties.svg?branch=master)](https://travis-ci.org/mathiasbynens/regenerate-unicode-properties)
 
-_regenerate-unicode-properties_ is a collection of [Regenerate](https://github.com/mathiasbynens/regenerate) sets for Unicode various properties. It’s based on [the data for Unicode v8.0.0](https://github.com/mathiasbynens/unicode-8.0.0).
+_regenerate-unicode-properties_ is a collection of [Regenerate](https://github.com/mathiasbynens/regenerate) sets for Unicode various properties. It’s based on [the data for Unicode v9.0.0](https://github.com/mathiasbynens/unicode-9.0.0).
 
 ## Installation
 
@@ -22,9 +22,8 @@ To get a specific Regenerate set:
 
 ```js
 // Examples:
-const AL = require('regenerate-unicode-properties/Bidi_Class/Arabic_Letter.js');
 const Lu = require('regenerate-unicode-properties/General_Category/Uppercase_Letter.js');
-const Bidi_Mirrored = require('regenerate-unicode-properties/Binary_Property/Bidi_Mirrored.js');
+const Greek = require('regenerate-unicode-properties/Script_Extensions/Greek.js');
 ```
 
 ## Author

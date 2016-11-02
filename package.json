@@ -10,15 +10,10 @@
   "files": [
     "LICENSE-MIT.txt",
     "index.js",
-    "Bidi_Class",
-    "Bidi_Paired_Bracket_Type",
     "Binary_Property",
-    "Block",
     "General_Category",
-    "Line_Break",
     "Script",
-    "Script_Extensions",
-    "Word_Break"
+    "Script_Extensions"
   ],
   "keywords": [
     "unicode",
@@ -40,7 +35,7 @@
   },
   "devDependencies": {
     "ava": "*",
-    "fs-extra": "^0.30.0",
+    "fs-extra": "^1.0.0",
     "jsesc": "^2.2.0",
     "unicode-9.0.0": "^0.7.0"
   },
