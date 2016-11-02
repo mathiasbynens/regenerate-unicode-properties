@@ -46,17 +46,6 @@ const properties = [
 	'Script',
 	'Script_Extensions',
 ];
-const binaryProperties = new Set([
-	'Alphabetic',
-	'Uppercase',
-	'Lowercase',
-	'White_Space',
-	'Noncharacter_Code_Point',
-	'Default_Ignorable_Code_Point',
-	'Any',
-	'ASCII',
-	'Assigned',
-]);
 
 for (const property of properties) {
 	// Empty the target directory, or create it if it doesn’t exist yet.
@@ -65,11 +54,6 @@ for (const property of properties) {
 	emptyDirSync(directory);
 	console.assert(unicode[property], `Property ${ property } not found.`);
 	for (const value of unicode[property]) {
-		if (property == 'Binary_Property') {
-			if (!binaryProperties.has(value)) {
-				continue;
-			}
-		}
 		const fileName = `${ directory }/${ value }.js`;
 		console.log(`Creating ${ fileName }…`);
 		const codePoints = require(
