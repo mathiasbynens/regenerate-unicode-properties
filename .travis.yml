@@ -1,7 +1,15 @@
 language: node_js
 node_js:
-  - "0.10"
-  - "0.12"
-  - "4"
-  - "5"
-  - "6"
+  - '0.10'
+  - '0.12'
+  - '4'
+  - '5'
+  - '6'
+  - '7'
+script:
+  - 'if [ "${TRAVIS_NODE_VERSION}" = "7" ]; then
+       npm run build;
+     fi'
+  - 'npm test'
+git:
+  depth: 1

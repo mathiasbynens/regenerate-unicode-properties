@@ -64,3 +64,15 @@ for (const property of properties) {
 		fs.writeFileSync(fileName, output);
 	}
 }
+
+const emojiBinaryProperties = require('unicode-tr51');
+for (const property of emojiBinaryProperties) {
+	const fileName = `Binary_Property/${ property }.js`;
+	console.log(`Creating ${ fileName }…`);
+	const codePoints = require(
+		`unicode-tr51/${ property }.js`
+	);
+	const set = regenerate(codePoints);
+	const output = `module.exports = ${ set.toCode() };\n`;
+	fs.writeFileSync(fileName, output);
+}

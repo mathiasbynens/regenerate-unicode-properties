@@ -6,6 +6,9 @@ test(t => {
 	t.true(
 		require('../Binary_Property/ASCII.js') instanceof regenerate
 	);
+	t.true(
+		require('../Binary_Property/Emoji.js') instanceof regenerate
+	);
 	t.throws(
 		() => require('../Invalid_Property/X.js'),
 		Error
