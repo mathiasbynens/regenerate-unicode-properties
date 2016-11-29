@@ -38,7 +38,7 @@
     "fs-extra": "^1.0.0",
     "jsesc": "^2.2.0",
     "unicode-9.0.0": "^0.7.0",
-    "unicode-tr51": "^7.0.1"
+    "unicode-tr51": "^7.0.2"
   },
   "scripts": {
     "build": "node build.js",
