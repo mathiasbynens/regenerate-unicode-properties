@@ -1,6 +1,6 @@
 # regenerate-unicode-properties [![Build status](https://travis-ci.org/mathiasbynens/regenerate-unicode-properties.svg?branch=master)](https://travis-ci.org/mathiasbynens/regenerate-unicode-properties)
 
-_regenerate-unicode-properties_ is a collection of [Regenerate](https://github.com/mathiasbynens/regenerate) sets for Unicode various properties. It’s based on [the data for Unicode v9.0.0](https://github.com/mathiasbynens/unicode-9.0.0).
+_regenerate-unicode-properties_ is a collection of [Regenerate](https://github.com/mathiasbynens/regenerate) sets for [various Unicode properties](https://github.com/tc39/proposal-regexp-unicode-property-escapes).
 
 ## Installation
 
@@ -12,7 +12,7 @@ $ npm install regenerate-unicode-properties
 
 ## Usage
 
-To get a list of supported properties, `require` it:
+To get a map of supported properties and their values:
 
 ```js
 const properties = require('regenerate-unicode-properties');

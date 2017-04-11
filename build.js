@@ -40,20 +40,25 @@ regenerate.prototype.toCode = function() {
 		(ranges.length ? '.' + ranges.join('.') : '');
 };
 
+const INDEX = new Map();
+
+/*----------------------------------------------------------------------------*/
+
 const properties = [
-	'Binary_Property',
 	'General_Category',
 	'Script',
 	'Script_Extensions',
 ];
 
 for (const property of properties) {
+	const values = [];
 	// Empty the target directory, or create it if it doesn’t exist yet.
 	const directory = `${ property }`;
 	console.log(`Emptying ${ directory }…`);
 	emptyDirSync(directory);
 	console.assert(unicode[property], `Property ${ property } not found.`);
 	for (const value of unicode[property]) {
+		values.push(value);
 		const fileName = `${ directory }/${ value }.js`;
 		console.log(`Creating ${ fileName }…`);
 		const codePoints = require(
@@ -63,6 +68,90 @@ for (const property of properties) {
 		const output = `module.exports = ${ set.toCode() };\n`;
 		fs.writeFileSync(fileName, output);
 	}
+	INDEX.set(property, values.sort());
+}
+
+/*----------------------------------------------------------------------------*/
+
+const binaryProperties = [
+	'ASCII',
+	'ASCII_Hex_Digit',
+	'Alphabetic',
+	'Any',
+	'Assigned',
+	'Bidi_Control',
+	'Bidi_Mirrored',
+	'Case_Ignorable',
+	'Cased',
+	'Changes_When_Casefolded',
+	'Changes_When_Casemapped',
+	'Changes_When_Lowercased',
+	'Changes_When_NFKC_Casefolded',
+	'Changes_When_Titlecased',
+	'Changes_When_Uppercased',
+	'Composition_Exclusion',
+	'Dash',
+	'Default_Ignorable_Code_Point',
+	'Deprecated',
+	'Diacritic',
+	'Expands_On_NFC',
+	'Expands_On_NFD',
+	'Expands_On_NFKC',
+	'Expands_On_NFKD',
+	'Extender',
+	'Full_Composition_Exclusion',
+	'Grapheme_Base',
+	'Grapheme_Extend',
+	'Grapheme_Link',
+	'Hex_Digit',
+	'Hyphen',
+	'IDS_Binary_Operator',
+	'IDS_Trinary_Operator',
+	'ID_Continue',
+	'ID_Start',
+	'Ideographic',
+	'Join_Control',
+	'Logical_Order_Exception',
+	'Lowercase',
+	'Math',
+	'Noncharacter_Code_Point',
+	'Other_Alphabetic',
+	'Other_Default_Ignorable_Code_Point',
+	'Other_Grapheme_Extend',
+	'Other_ID_Continue',
+	'Other_ID_Start',
+	'Other_Lowercase',
+	'Other_Math',
+	'Other_Uppercase',
+	'Pattern_Syntax',
+	'Pattern_White_Space',
+	'Prepended_Concatenation_Mark',
+	'Quotation_Mark',
+	'Radical',
+	'Sentence_Terminal',
+	'Soft_Dotted',
+	'Terminal_Punctuation',
+	'Unified_Ideograph',
+	'Uppercase',
+	'Variation_Selector',
+	'White_Space',
+	'XID_Continue',
+	'XID_Start'
+];
+
+// Empty the target directory, or create it if it doesn’t exist yet.
+const directory = 'Binary_Property';
+console.log(`Emptying ${ directory }…`);
+emptyDirSync(directory);
+for (const property of binaryProperties) {
+	const fileName = `${ directory }/${ property }.js`;
+	console.log(`Creating ${ fileName }…`);
+	const codePoints = require(
+		`unicode-9.0.0/Binary_Property/${ property }/code-points.js`
+	);
+	const set = regenerate(codePoints);
+	const output = `module.exports = ${ set.toCode() };\n`;
+	fs.writeFileSync(fileName, output);
 }
 
 const emojiBinaryProperties = require('unicode-tr51');
@@ -76,3 +165,17 @@ for (const property of emojiBinaryProperties) {
 	const output = `module.exports = ${ set.toCode() };\n`;
 	fs.writeFileSync(fileName, output);
 }
+
+const allBinaryProperties = binaryProperties
+	.concat(emojiBinaryProperties)
+	.sort();
+INDEX.set('Binary_Property', allBinaryProperties);
+
+/*----------------------------------------------------------------------------*/
+
+const output = `module.exports = ${
+	jsesc(INDEX, {
+		'compact': false
+	})
+};\n`;
+fs.writeFileSync('index.js', output);
