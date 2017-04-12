@@ -20,4 +20,7 @@ test(t => {
 		() => require('../Script_Extensions/Invalid_Property_Value.js'),
 		Error
 	);
+	t.true(
+		/^\d+\.\d+\.\d+$/.test(require('../unicode-version.js'))
+	);
 });

@@ -165,3 +165,17 @@ const output = `module.exports = ${
 	})
 };\n`;
 fs.writeFileSync('index.js', output);
+
+/*----------------------------------------------------------------------------*/
+
+const packageData = require('./package.json');
+const dependencies = Object.keys(packageData.devDependencies);
+const unicodePackage = dependencies.find((name) =>/^unicode-\d/.test(name));
+const unicodeVersion = unicodePackage.replace(/^unicode-/g, '');
+
+const versionOutput = `module.exports = ${
+	jsesc(unicodeVersion, {
+		'wrap': true
+	})
+};\n`;
+fs.writeFileSync('unicode-version.js', versionOutput);

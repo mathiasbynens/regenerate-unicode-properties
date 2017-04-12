@@ -26,6 +26,12 @@ const Lu = require('regenerate-unicode-properties/General_Category/Uppercase_Let
 const Greek = require('regenerate-unicode-properties/Script_Extensions/Greek.js');
 ```
 
+To get the Unicode version the data was based on:
+
+```js
+const version = require('regenerate-unicode-properties/unicode-version.js');
+```
+
 ## Author
 
 | [![twitter/mathias](https://gravatar.com/avatar/24e08a9ea84deb17ae121074d0f17125?s=70)](https://twitter.com/mathias "Follow @mathias on Twitter") |

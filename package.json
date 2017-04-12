@@ -10,6 +10,7 @@
   "files": [
     "LICENSE-MIT.txt",
     "index.js",
+    "unicode-version.js",
     "Binary_Property",
     "General_Category",
     "Script",
