@@ -89,7 +89,6 @@ const binaryProperties = [
 	'Changes_When_NFKC_Casefolded',
 	'Changes_When_Titlecased',
 	'Changes_When_Uppercased',
-	'Composition_Exclusion',
 	'Dash',
 	'Default_Ignorable_Code_Point',
 	'Deprecated',
