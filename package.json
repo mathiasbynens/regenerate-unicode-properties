@@ -39,6 +39,7 @@
     "fs-extra": "^2.1.2",
     "jsesc": "^2.5.0",
     "unicode-9.0.0": "^0.7.4",
+    "unicode-canonical-property-names": "^2.0.2",
     "unicode-tr51": "^8.1.1"
   },
   "scripts": {

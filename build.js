@@ -44,13 +44,13 @@ const INDEX = new Map();
 
 /*----------------------------------------------------------------------------*/
 
-const properties = [
+const nonBinaryProperties = [
 	'General_Category',
 	'Script',
 	'Script_Extensions',
 ];
 
-for (const property of properties) {
+for (const property of nonBinaryProperties) {
 	const values = [];
 	// Empty the target directory, or create it if it doesn’t exist yet.
 	const directory = `${ property }`;
@@ -73,55 +73,13 @@ for (const property of properties) {
 
 /*----------------------------------------------------------------------------*/
 
-const binaryProperties = [
-	'ASCII',
-	'ASCII_Hex_Digit',
-	'Alphabetic',
-	'Any',
-	'Assigned',
-	'Bidi_Control',
-	'Bidi_Mirrored',
-	'Case_Ignorable',
-	'Cased',
-	'Changes_When_Casefolded',
-	'Changes_When_Casemapped',
-	'Changes_When_Lowercased',
-	'Changes_When_NFKC_Casefolded',
-	'Changes_When_Titlecased',
-	'Changes_When_Uppercased',
-	'Dash',
-	'Default_Ignorable_Code_Point',
-	'Deprecated',
-	'Diacritic',
-	'Extender',
-	'Full_Composition_Exclusion',
-	'Grapheme_Base',
-	'Grapheme_Extend',
-	'Hex_Digit',
-	'IDS_Binary_Operator',
-	'IDS_Trinary_Operator',
-	'ID_Continue',
-	'ID_Start',
-	'Ideographic',
-	'Join_Control',
-	'Logical_Order_Exception',
-	'Lowercase',
-	'Math',
-	'Noncharacter_Code_Point',
-	'Pattern_Syntax',
-	'Pattern_White_Space',
-	'Quotation_Mark',
-	'Radical',
-	'Sentence_Terminal',
-	'Soft_Dotted',
-	'Terminal_Punctuation',
-	'Unified_Ideograph',
-	'Uppercase',
-	'Variation_Selector',
-	'White_Space',
-	'XID_Continue',
-	'XID_Start'
-];
+const supportedProperties = require('unicode-canonical-property-names');
+for (const property of nonBinaryProperties) {
+	supportedProperties.delete(property);
+}
+const properties = [...supportedProperties];
+const binaryProperties = properties.filter(p => !p.startsWith('Emoji'));
+const emojiBinaryProperties = properties.filter(p => p.startsWith('Emoji'));
 
 // Empty the target directory, or create it if it doesn’t exist yet.
 const directory = 'Binary_Property';
@@ -138,7 +96,6 @@ for (const property of binaryProperties) {
 	fs.writeFileSync(fileName, output);
 }
 
-const emojiBinaryProperties = require('unicode-tr51');
 for (const property of emojiBinaryProperties) {
 	const fileName = `Binary_Property/${ property }.js`;
 	console.log(`Creating ${ fileName }…`);
