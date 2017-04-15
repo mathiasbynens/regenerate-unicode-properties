@@ -127,10 +127,17 @@ const packageData = require('./package.json');
 const dependencies = Object.keys(packageData.devDependencies);
 const unicodePackage = dependencies.find((name) =>/^unicode-\d/.test(name));
 const unicodeVersion = unicodePackage.replace(/^unicode-/g, '');
-
 const versionOutput = `module.exports = ${
 	jsesc(unicodeVersion, {
 		'wrap': true
 	})
 };\n`;
 fs.writeFileSync('unicode-version.js', versionOutput);
+
+const emojiVersion = require('unicode-tr51/emoji-version.js');
+const emojiVersionOutput = `module.exports = ${
+	jsesc(emojiVersion, {
+		'wrap': true
+	})
+};\n`;
+fs.writeFileSync('emoji-version.js', emojiVersionOutput);

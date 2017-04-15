@@ -10,6 +10,7 @@
   "files": [
     "LICENSE-MIT.txt",
     "index.js",
+    "emoji-version.js",
     "unicode-version.js",
     "Binary_Property",
     "General_Category",
@@ -40,7 +41,7 @@
     "jsesc": "^2.5.0",
     "unicode-9.0.0": "^0.7.4",
     "unicode-canonical-property-names-ecmascript": "^1.0.0",
-    "unicode-tr51": "^8.1.1"
+    "unicode-tr51": "^8.1.2"
   },
   "scripts": {
     "build": "node build.js",

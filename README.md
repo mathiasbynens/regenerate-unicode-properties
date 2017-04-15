@@ -29,7 +29,13 @@ const Greek = require('regenerate-unicode-properties/Script_Extensions/Greek.js'
 To get the Unicode version the data was based on:
 
 ```js
-const version = require('regenerate-unicode-properties/unicode-version.js');
+const unicodeVersion = require('regenerate-unicode-properties/unicode-version.js');
+```
+
+To get the UTR51 version the emoji data was based on:
+
+```js
+const emojiVersion = require('regenerate-unicode-properties/emoji-version.js');
 ```
 
 ## Author
