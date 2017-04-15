@@ -73,7 +73,7 @@ for (const property of nonBinaryProperties) {
 
 /*----------------------------------------------------------------------------*/
 
-const supportedProperties = require('unicode-canonical-property-names');
+const supportedProperties = require('unicode-canonical-property-names-ecmascript');
 for (const property of nonBinaryProperties) {
 	supportedProperties.delete(property);
 }
