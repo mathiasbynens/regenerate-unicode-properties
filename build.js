@@ -110,7 +110,6 @@ const binaryProperties = [
 	'Noncharacter_Code_Point',
 	'Pattern_Syntax',
 	'Pattern_White_Space',
-	'Prepended_Concatenation_Mark',
 	'Quotation_Mark',
 	'Radical',
 	'Sentence_Terminal',
