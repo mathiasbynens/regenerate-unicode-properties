@@ -4,7 +4,8 @@ const fs = require('fs');
 const jsesc = require('jsesc');
 const emptyDirSync = require('fs-extra').emptyDirSync;
 const regenerate = require('regenerate');
-const unicode = require('unicode-9.0.0');
+const UNICODE_VERSION = '10.0.0';
+const unicode = require(`unicode-${ UNICODE_VERSION }`);
 
 /*----------------------------------------------------------------------------*/
 
@@ -62,7 +63,7 @@ for (const property of nonBinaryProperties) {
 		const fileName = `${ directory }/${ value }.js`;
 		console.log(`Creating ${ fileName }…`);
 		const codePoints = require(
-			`unicode-9.0.0/${ property }/${ value }/code-points.js`
+			`unicode-${ UNICODE_VERSION }/${ property }/${ value }/code-points.js`
 		);
 		const set = regenerate(codePoints);
 		const output = `module.exports = ${ set.toCode() };\n`;
@@ -89,7 +90,7 @@ for (const property of binaryProperties) {
 	const fileName = `${ directory }/${ property }.js`;
 	console.log(`Creating ${ fileName }…`);
 	const codePoints = require(
-		`unicode-9.0.0/Binary_Property/${ property }/code-points.js`
+		`unicode-${ UNICODE_VERSION }/Binary_Property/${ property }/code-points.js`
 	);
 	const set = regenerate(codePoints);
 	const output = `module.exports = ${ set.toCode() };\n`;

@@ -114,6 +114,7 @@ module.exports = new Map([
 		'Mandaic',
 		'Manichaean',
 		'Marchen',
+		'Masaram_Gondi',
 		'Meetei_Mayek',
 		'Mende_Kikakui',
 		'Meroitic_Cursive',
@@ -128,6 +129,7 @@ module.exports = new Map([
 		'New_Tai_Lue',
 		'Newa',
 		'Nko',
+		'Nushu',
 		'Ogham',
 		'Ol_Chiki',
 		'Old_Hungarian',
@@ -156,6 +158,7 @@ module.exports = new Map([
 		'SignWriting',
 		'Sinhala',
 		'Sora_Sompeng',
+		'Soyombo',
 		'Sundanese',
 		'Syloti_Nagri',
 		'Syriac',
@@ -176,7 +179,8 @@ module.exports = new Map([
 		'Ugaritic',
 		'Vai',
 		'Warang_Citi',
-		'Yi'
+		'Yi',
+		'Zanabazar_Square'
 	]],
 	['Script_Extensions', [
 		'Adlam',
@@ -253,6 +257,7 @@ module.exports = new Map([
 		'Mandaic',
 		'Manichaean',
 		'Marchen',
+		'Masaram_Gondi',
 		'Meetei_Mayek',
 		'Mende_Kikakui',
 		'Meroitic_Cursive',
@@ -267,6 +272,7 @@ module.exports = new Map([
 		'New_Tai_Lue',
 		'Newa',
 		'Nko',
+		'Nushu',
 		'Ogham',
 		'Ol_Chiki',
 		'Old_Hungarian',
@@ -295,6 +301,7 @@ module.exports = new Map([
 		'SignWriting',
 		'Sinhala',
 		'Sora_Sompeng',
+		'Soyombo',
 		'Sundanese',
 		'Syloti_Nagri',
 		'Syriac',
@@ -315,7 +322,8 @@ module.exports = new Map([
 		'Ugaritic',
 		'Vai',
 		'Warang_Citi',
-		'Yi'
+		'Yi',
+		'Zanabazar_Square'
 	]],
 	['Binary_Property', [
 		'ASCII',
@@ -360,6 +368,7 @@ module.exports = new Map([
 		'Pattern_White_Space',
 		'Quotation_Mark',
 		'Radical',
+		'Regional_Indicator',
 		'Sentence_Terminal',
 		'Soft_Dotted',
 		'Terminal_Punctuation',
