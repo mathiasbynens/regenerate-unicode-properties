@@ -79,8 +79,15 @@ for (const property of nonBinaryProperties) {
 	supportedProperties.delete(property);
 }
 const properties = [...supportedProperties];
-const binaryProperties = properties.filter(p => !p.startsWith('Emoji'));
-const emojiBinaryProperties = properties.filter(p => p.startsWith('Emoji'));
+const binaryProperties = [];
+const emojiBinaryProperties = [];
+for (const property of properties) {
+	if (property == 'Extended_Pictographic' || property.startsWith('Emoji')) {
+		emojiBinaryProperties.push(property);
+	} else {
+		binaryProperties.push(property);
+	}
+}
 
 // Empty the target directory, or create it if it doesn’t exist yet.
 const directory = 'Binary_Property';
