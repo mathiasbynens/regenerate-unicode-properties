@@ -41,7 +41,7 @@
     "jsesc": "^2.5.1",
     "unicode-10.0.0": "^0.7.4",
     "unicode-canonical-property-names-ecmascript": "^1.0.3",
-    "unicode-tr51": "^9.0.0"
+    "unicode-tr51": "8.1.2"
   },
   "scripts": {
     "build": "node build.js",
