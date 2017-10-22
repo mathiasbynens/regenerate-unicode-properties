@@ -350,7 +350,6 @@ module.exports = new Map([
 		'Emoji_Modifier',
 		'Emoji_Modifier_Base',
 		'Emoji_Presentation',
-		'Extended_Pictographic',
 		'Extender',
 		'Grapheme_Base',
 		'Grapheme_Extend',
