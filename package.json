@@ -10,7 +10,6 @@
   "files": [
     "LICENSE-MIT.txt",
     "index.js",
-    "emoji-version.js",
     "unicode-version.js",
     "Binary_Property",
     "General_Category",
@@ -36,12 +35,11 @@
     "regenerate": "^1.3.3"
   },
   "devDependencies": {
-    "ava": "^0.22.0",
-    "fs-extra": "^4.0.2",
+    "ava": "^0.25.0",
+    "fs-extra": "^6.0.1",
     "jsesc": "^2.5.1",
-    "unicode-10.0.0": "^0.7.4",
-    "unicode-canonical-property-names-ecmascript": "^1.0.3",
-    "unicode-tr51": "8.1.2"
+    "unicode-11.0.0": "^0.7.6",
+    "unicode-canonical-property-names-ecmascript": "^1.0.3"
   },
   "scripts": {
     "build": "node build.js",

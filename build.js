@@ -4,7 +4,7 @@ const fs = require('fs');
 const jsesc = require('jsesc');
 const emptyDirSync = require('fs-extra').emptyDirSync;
 const regenerate = require('regenerate');
-const UNICODE_VERSION = '10.0.0';
+const UNICODE_VERSION = '11.0.0';
 const unicode = require(`unicode-${ UNICODE_VERSION }`);
 
 /*----------------------------------------------------------------------------*/
@@ -78,16 +78,7 @@ const supportedProperties = require('unicode-canonical-property-names-ecmascript
 for (const property of nonBinaryProperties) {
 	supportedProperties.delete(property);
 }
-const properties = [...supportedProperties];
-const binaryProperties = [];
-const emojiBinaryProperties = [];
-for (const property of properties) {
-	if (property == 'Extended_Pictographic' || property.startsWith('Emoji')) {
-		emojiBinaryProperties.push(property);
-	} else {
-		binaryProperties.push(property);
-	}
-}
+const binaryProperties = [...supportedProperties];
 
 // Empty the target directory, or create it if it doesn’t exist yet.
 const directory = 'Binary_Property';
@@ -104,20 +95,7 @@ for (const property of binaryProperties) {
 	fs.writeFileSync(fileName, output);
 }
 
-for (const property of emojiBinaryProperties) {
-	const fileName = `Binary_Property/${ property }.js`;
-	console.log(`Creating ${ fileName }…`);
-	const codePoints = require(
-		`unicode-tr51/${ property }.js`
-	);
-	const set = regenerate(codePoints);
-	const output = `module.exports = ${ set.toCode() };\n`;
-	fs.writeFileSync(fileName, output);
-}
-
-const allBinaryProperties = binaryProperties
-	.concat(emojiBinaryProperties)
-	.sort();
+const allBinaryProperties = binaryProperties.sort();
 INDEX.set('Binary_Property', allBinaryProperties);
 
 /*----------------------------------------------------------------------------*/
@@ -141,11 +119,3 @@ const versionOutput = `module.exports = ${
 	})
 };\n`;
 fs.writeFileSync('unicode-version.js', versionOutput);
-
-const emojiVersion = require('unicode-tr51/emoji-version.js');
-const emojiVersionOutput = `module.exports = ${
-	jsesc(emojiVersion, {
-		'wrap': true
-	})
-};\n`;
-fs.writeFileSync('emoji-version.js', emojiVersionOutput);
