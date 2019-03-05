@@ -2,7 +2,7 @@ import test from 'ava';
 import regenerate from 'regenerate';
 import matchLoosely from '../index.js';
 
-test(t => {
+test('regenerate-unicode-properties', t => {
 	t.true(
 		require('../Binary_Property/ASCII.js') instanceof regenerate
 	);
