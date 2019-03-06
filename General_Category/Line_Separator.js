@@ -1,1 +1,2 @@
-module.exports = require('regenerate')(0x2028);
+const set = require('regenerate')(0x2028);
+module.exports = set;

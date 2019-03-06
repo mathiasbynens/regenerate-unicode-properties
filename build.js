@@ -37,8 +37,24 @@ regenerate.prototype.toCode = function() {
 		}
 		index += 2;
 	}
-	return 'require(\'regenerate\')(' + loneCodePoints.join(', ') + ')' +
-		(ranges.length ? '.' + ranges.join('.') : '');
+	let output = 'const set = require(\'regenerate\')(' + loneCodePoints.join(', ') + ');';
+	if (ranges.length > 0) {
+		let i = 0;
+		output += 'set';
+		// Avoid deeply-nested ASTs.
+		// https://github.com/babel/babel/issues/8278
+		const MAX_CHAINED_CALLS = 50;
+		for (const range of ranges) {
+			if (i++ == MAX_CHAINED_CALLS) {
+				i = 0;
+				output += ';\nset';
+			} else {
+				output += '.' + range;
+			}
+		}
+		output += ';';
+	}
+	return output;
 };
 
 const INDEX = new Map();
@@ -66,7 +82,7 @@ for (const property of nonBinaryProperties) {
 			`unicode-${ UNICODE_VERSION }/${ property }/${ value }/code-points.js`
 		);
 		const set = regenerate(codePoints);
-		const output = `module.exports = ${ set.toCode() };\n`;
+		const output = `${ set.toCode() }\nmodule.exports = set;\n`;
 		fs.writeFileSync(fileName, output);
 	}
 	INDEX.set(property, values.sort());
@@ -91,7 +107,7 @@ for (const property of binaryProperties) {
 		`unicode-${ UNICODE_VERSION }/Binary_Property/${ property }/code-points.js`
 	);
 	const set = regenerate(codePoints);
-	const output = `module.exports = ${ set.toCode() };\n`;
+	const output = `${ set.toCode() }\nmodule.exports = set;\n`;
 	fs.writeFileSync(fileName, output);
 }
 
