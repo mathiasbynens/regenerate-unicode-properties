@@ -37,7 +37,7 @@ regenerate.prototype.toCode = function() {
 		}
 		index += 2;
 	}
-	let output = 'const set = require(\'regenerate\')(' + loneCodePoints.join(', ') + ');';
+	let output = 'const set = require(\'regenerate\')(' + loneCodePoints.join(', ') + ');\n';
 	if (ranges.length > 0) {
 		let i = 0;
 		output += 'set';
@@ -47,7 +47,7 @@ regenerate.prototype.toCode = function() {
 		for (const range of ranges) {
 			if (i++ == MAX_CHAINED_CALLS) {
 				i = 0;
-				output += ';\nset';
+				output += '.' + range + ';\nset';
 			} else {
 				output += '.' + range;
 			}
