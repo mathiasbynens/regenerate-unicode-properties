@@ -4,7 +4,7 @@ const fs = require('fs');
 const jsesc = require('jsesc');
 const emptyDirSync = require('fs-extra').emptyDirSync;
 const regenerate = require('regenerate');
-const UNICODE_VERSION = '12.0.0';
+const UNICODE_VERSION = '12.1.0';
 const unicode = require(`unicode-${ UNICODE_VERSION }`);
 
 /*----------------------------------------------------------------------------*/
