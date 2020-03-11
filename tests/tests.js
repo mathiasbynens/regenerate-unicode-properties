@@ -1,6 +1,5 @@
-import test from 'ava';
-import regenerate from 'regenerate';
-import matchLoosely from '../index.js';
+const test = require('ava');
+const regenerate = require('regenerate');
 
 test('regenerate-unicode-properties', t => {
 	t.true(
@@ -14,11 +13,11 @@ test('regenerate-unicode-properties', t => {
 	);
 	t.throws(
 		() => require('../Invalid_Property/X.js'),
-		Error
+		{ instanceOf: Error }
 	);
 	t.throws(
 		() => require('../Script_Extensions/Invalid_Property_Value.js'),
-		Error
+		{ instanceOf: Error }
 	);
 	t.true(
 		/^\d+\.\d+\.\d+$/.test(require('../unicode-version.js'))
