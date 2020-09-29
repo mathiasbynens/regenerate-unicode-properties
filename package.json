@@ -38,7 +38,7 @@
     "ava": "^3.5.0",
     "fs-extra": "^8.1.0",
     "jsesc": "^2.5.2",
-    "unicode-13.0.0": "^0.8.0",
+    "@unicode/unicode-13.0.0": "^1.0.0",
     "unicode-canonical-property-names-ecmascript": "^1.0.4"
   },
   "scripts": {

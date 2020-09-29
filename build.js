@@ -5,7 +5,7 @@ const jsesc = require('jsesc');
 const emptyDirSync = require('fs-extra').emptyDirSync;
 const regenerate = require('regenerate');
 const UNICODE_VERSION = '13.0.0';
-const unicode = require(`unicode-${ UNICODE_VERSION }`);
+const unicode = require(`@unicode/unicode-${ UNICODE_VERSION }`);
 
 /*----------------------------------------------------------------------------*/
 
@@ -79,7 +79,7 @@ for (const property of nonBinaryProperties) {
 		const fileName = `${ directory }/${ value }.js`;
 		console.log(`Creating ${ fileName }…`);
 		const codePoints = require(
-			`unicode-${ UNICODE_VERSION }/${ property }/${ value }/code-points.js`
+			`@unicode/unicode-${ UNICODE_VERSION }/${ property }/${ value }/code-points.js`
 		);
 		const set = regenerate(codePoints);
 		const output = `${ set.toCode() }\nmodule.exports = set;\n`;
@@ -104,7 +104,7 @@ for (const property of binaryProperties) {
 	const fileName = `${ directory }/${ property }.js`;
 	console.log(`Creating ${ fileName }…`);
 	const codePoints = require(
-		`unicode-${ UNICODE_VERSION }/Binary_Property/${ property }/code-points.js`
+		`@unicode/unicode-${ UNICODE_VERSION }/Binary_Property/${ property }/code-points.js`
 	);
 	const set = regenerate(codePoints);
 	const output = `${ set.toCode() }\nmodule.exports = set;\n`;
@@ -127,8 +127,8 @@ fs.writeFileSync('index.js', output);
 
 const packageData = require('./package.json');
 const dependencies = Object.keys(packageData.devDependencies);
-const unicodePackage = dependencies.find((name) =>/^unicode-\d/.test(name));
-const unicodeVersion = unicodePackage.replace(/^unicode-/g, '');
+const unicodePackage = dependencies.find((name) =>/^@unicode\/unicode-\d/.test(name));
+const unicodeVersion = unicodePackage.replace(/^@unicode\/unicode-/g, '');
 const versionOutput = `module.exports = ${
 	jsesc(unicodeVersion, {
 		'wrap': true
