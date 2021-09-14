@@ -1,3 +1,3 @@
 const set = require('regenerate')();
-set.addRange(0x1B00, 0x1B4C).addRange(0x1B50, 0x1B7E);
+set.addRange(0x10F70, 0x10F89);
 module.exports = set;
