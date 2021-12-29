@@ -82,7 +82,7 @@ for (const property of nonBinaryProperties) {
 			`@unicode/unicode-${ UNICODE_VERSION }/${ property }/${ value }/code-points.js`
 		);
 		const set = regenerate(codePoints);
-		const output = `${ set.toCode() }\nmodule.exports = set;\n`;
+		const output = `${ set.toCode() }\nexports.characters = set;\n`;
 		fs.writeFileSync(fileName, output);
 	}
 	INDEX.set(property, values.sort());
@@ -107,12 +107,48 @@ for (const property of binaryProperties) {
 		`@unicode/unicode-${ UNICODE_VERSION }/Binary_Property/${ property }/code-points.js`
 	);
 	const set = regenerate(codePoints);
-	const output = `${ set.toCode() }\nmodule.exports = set;\n`;
+	const output = `${ set.toCode() }\nexports.characters = set;\n`;
 	fs.writeFileSync(fileName, output);
 }
 
 const allBinaryProperties = binaryProperties.sort();
 INDEX.set('Binary_Property', allBinaryProperties);
+
+/*----------------------------------------------------------------------------*/
+
+const propertiesOfStrings = [
+	'Basic_Emoji',
+	'Emoji_Keycap_Sequence',
+	'RGI_Emoji_Modifier_Sequence',
+	'RGI_Emoji_Flag_Sequence',
+	'RGI_Emoji_Tag_Sequence',
+	'RGI_Emoji_ZWJ_Sequence',
+	'RGI_Emoji',
+].sort();
+
+// Empty the target directory, or create it if it doesn’t exist yet.
+const posDirectory = 'Property_of_Strings';
+console.log(`Emptying ${ posDirectory }…`);
+emptyDirSync(posDirectory);
+
+for (const property of propertiesOfStrings) {
+	const fileName = `${ posDirectory }/${ property }.js`;
+	console.log(`Creating ${ fileName }…`);
+	const rawStrings = require(`@unicode/unicode-${ UNICODE_VERSION }/Sequence_Property/${ property }/index.js`);
+	const codePoints = [];
+	const strings = [];
+	for (const rawString of rawStrings) {
+		if (rawString.length === 1 || (rawString.length === 2 && rawString.codePointAt(0) > 0xFFFF)) {
+			codePoints.push(rawString.codePointAt(0));
+		} else {
+			strings.push(rawString);
+		}
+	}
+	const set = regenerate(codePoints);
+	const output = `${ set.toCode() }\nexports.characters = set;\nexports.strings = ${ jsesc(strings, { es6: true }) };\n`;
+	fs.writeFileSync(fileName, output);
+}
+INDEX.set('Property_of_Strings', propertiesOfStrings);
 
 /*----------------------------------------------------------------------------*/
 
