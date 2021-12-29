@@ -111,6 +111,35 @@ for (const property of binaryProperties) {
 	fs.writeFileSync(fileName, output);
 }
 
+const propertiesOfStrings = [
+	'Basic_Emoji',
+	'Emoji_Keycap_Sequence',
+	'RGI_Emoji_Modifier_Sequence',
+	'RGI_Emoji_Flag_Sequence',
+	'RGI_Emoji_Tag_Sequence',
+	'RGI_Emoji_ZWJ_Sequence',
+	'RGI_Emoji',
+];
+for (const property of propertiesOfStrings) {
+	binaryProperties.push(property);
+
+	const fileName = `${ directory }/${ property }.js`;
+	console.log(`Creating ${ fileName }…`);
+	const rawStrings = require(`@unicode/unicode-${ UNICODE_VERSION }/Sequence_Property/${ property }/index.js`);
+	const codePoints = [];
+	const strings = [];
+	for (const rawString of rawStrings) {
+		if (rawString.length === 1 || (rawString.length === 2 && rawString.codePointAt(0) > 0xffff)) {
+			codePoints.push(rawString.codePointAt(0));
+		} else {
+			strings.push(rawString);
+		}
+	}
+	const set = regenerate(codePoints);
+	const output = `${ set.toCode() }\nexports.characters = set;\nexports.strings = ${ jsesc(strings, { minimal: true }) };\n`;
+	fs.writeFileSync(fileName, output);
+}
+
 const allBinaryProperties = binaryProperties.sort();
 INDEX.set('Binary_Property', allBinaryProperties);
 
