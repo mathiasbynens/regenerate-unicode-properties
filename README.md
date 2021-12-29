@@ -28,7 +28,7 @@ const Greek = require('regenerate-unicode-properties/Script_Extensions/Greek.js'
 
 Some properties can also refer to strings rather than single characters:
 ```js
-const Basic_Emoji = require('regenerate-unicode-properties/Binary_Property/Basic_Emoji.js').characters;
+const { characters, strings } = require('regenerate-unicode-properties/Property_of_Strings/Basic_Emoji.js');
 ```
 
 To get the Unicode version the data was based on:
