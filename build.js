@@ -82,7 +82,7 @@ for (const property of nonBinaryProperties) {
 			`@unicode/unicode-${ UNICODE_VERSION }/${ property }/${ value }/code-points.js`
 		);
 		const set = regenerate(codePoints);
-		const output = `${ set.toCode() }\nmodule.exports = set;\n`;
+		const output = `${ set.toCode() }\nexports.characters = set;\n`;
 		fs.writeFileSync(fileName, output);
 	}
 	INDEX.set(property, values.sort());
@@ -107,7 +107,7 @@ for (const property of binaryProperties) {
 		`@unicode/unicode-${ UNICODE_VERSION }/Binary_Property/${ property }/code-points.js`
 	);
 	const set = regenerate(codePoints);
-	const output = `${ set.toCode() }\nmodule.exports = set;\n`;
+	const output = `${ set.toCode() }\nexports.characters = set;\n`;
 	fs.writeFileSync(fileName, output);
 }
 

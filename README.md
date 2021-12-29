@@ -22,8 +22,13 @@ To get a specific Regenerate set:
 
 ```js
 // Examples:
-const Lu = require('regenerate-unicode-properties/General_Category/Uppercase_Letter.js');
-const Greek = require('regenerate-unicode-properties/Script_Extensions/Greek.js');
+const Lu = require('regenerate-unicode-properties/General_Category/Uppercase_Letter.js').characters;
+const Greek = require('regenerate-unicode-properties/Script_Extensions/Greek.js').characters;
+```
+
+Some properties can also refer to strings rather than single characters:
+```js
+const Basic_Emoji = require('regenerate-unicode-properties/Binary_Property/Basic_Emoji.js').characters;
 ```
 
 To get the Unicode version the data was based on:
