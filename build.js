@@ -111,6 +111,11 @@ for (const property of binaryProperties) {
 	fs.writeFileSync(fileName, output);
 }
 
+const allBinaryProperties = binaryProperties.sort();
+INDEX.set('Binary_Property', allBinaryProperties);
+
+/*----------------------------------------------------------------------------*/
+
 const propertiesOfStrings = [
 	'Basic_Emoji',
 	'Emoji_Keycap_Sequence',
@@ -119,29 +124,31 @@ const propertiesOfStrings = [
 	'RGI_Emoji_Tag_Sequence',
 	'RGI_Emoji_ZWJ_Sequence',
 	'RGI_Emoji',
-];
-for (const property of propertiesOfStrings) {
-	binaryProperties.push(property);
+].sort();
 
-	const fileName = `${ directory }/${ property }.js`;
+// Empty the target directory, or create it if it doesn’t exist yet.
+const posDirectory = 'Property_of_Strings';
+console.log(`Emptying ${ posDirectory }…`);
+emptyDirSync(posDirectory);
+
+for (const property of propertiesOfStrings) {
+	const fileName = `${ posDirectory }/${ property }.js`;
 	console.log(`Creating ${ fileName }…`);
 	const rawStrings = require(`@unicode/unicode-${ UNICODE_VERSION }/Sequence_Property/${ property }/index.js`);
 	const codePoints = [];
 	const strings = [];
 	for (const rawString of rawStrings) {
-		if (rawString.length === 1 || (rawString.length === 2 && rawString.codePointAt(0) > 0xffff)) {
+		if (rawString.length === 1 || (rawString.length === 2 && rawString.codePointAt(0) > 0xFFFF)) {
 			codePoints.push(rawString.codePointAt(0));
 		} else {
 			strings.push(rawString);
 		}
 	}
 	const set = regenerate(codePoints);
-	const output = `${ set.toCode() }\nexports.characters = set;\nexports.strings = ${ jsesc(strings, { minimal: true }) };\n`;
+	const output = `${ set.toCode() }\nexports.characters = set;\nexports.strings = ${ jsesc(strings, { es6: true }) };\n`;
 	fs.writeFileSync(fileName, output);
 }
-
-const allBinaryProperties = binaryProperties.sort();
-INDEX.set('Binary_Property', allBinaryProperties);
+INDEX.set('Property_of_Strings', propertiesOfStrings);
 
 /*----------------------------------------------------------------------------*/
 

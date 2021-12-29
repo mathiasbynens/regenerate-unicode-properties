@@ -371,7 +371,6 @@ module.exports = new Map([
 		'Alphabetic',
 		'Any',
 		'Assigned',
-		'Basic_Emoji',
 		'Bidi_Control',
 		'Bidi_Mirrored',
 		'Case_Ignorable',
@@ -388,7 +387,6 @@ module.exports = new Map([
 		'Diacritic',
 		'Emoji',
 		'Emoji_Component',
-		'Emoji_Keycap_Sequence',
 		'Emoji_Modifier',
 		'Emoji_Modifier_Base',
 		'Emoji_Presentation',
@@ -410,11 +408,6 @@ module.exports = new Map([
 		'Pattern_Syntax',
 		'Pattern_White_Space',
 		'Quotation_Mark',
-		'RGI_Emoji',
-		'RGI_Emoji_Flag_Sequence',
-		'RGI_Emoji_Modifier_Sequence',
-		'RGI_Emoji_Tag_Sequence',
-		'RGI_Emoji_ZWJ_Sequence',
 		'Radical',
 		'Regional_Indicator',
 		'Sentence_Terminal',
@@ -426,5 +419,14 @@ module.exports = new Map([
 		'White_Space',
 		'XID_Continue',
 		'XID_Start'
+	]],
+	['Property_of_Strings', [
+		'Basic_Emoji',
+		'Emoji_Keycap_Sequence',
+		'RGI_Emoji',
+		'RGI_Emoji_Flag_Sequence',
+		'RGI_Emoji_Modifier_Sequence',
+		'RGI_Emoji_Tag_Sequence',
+		'RGI_Emoji_ZWJ_Sequence'
 	]]
 ]);
