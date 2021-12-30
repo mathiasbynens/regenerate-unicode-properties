@@ -13,6 +13,7 @@
     "unicode-version.js",
     "Binary_Property",
     "General_Category",
+    "Property_of_Strings",
     "Script",
     "Script_Extensions"
   ],
