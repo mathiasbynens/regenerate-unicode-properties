@@ -1,6 +1,6 @@
 {
   "name": "regenerate-unicode-properties",
-  "version": "10.0.1",
+  "version": "10.1.0",
   "description": "Regenerate sets for Unicode properties and values.",
   "homepage": "https://github.com/mathiasbynens/regenerate-unicode-properties",
   "main": "index.js",
