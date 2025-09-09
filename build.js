@@ -1,13 +1,19 @@
 'use strict';
 
-const fs = require('fs');
+const fs = require('node:fs');
 const jsesc = require('jsesc');
-const emptyDirSync = require('fs-extra').emptyDirSync;
 const regenerate = require('regenerate');
 const UNICODE_VERSION = require('./unicode-version.js');
 const unicode = require(`@unicode/unicode-${ UNICODE_VERSION }`);
 
 /*----------------------------------------------------------------------------*/
+
+const emptyDirSync = function (directory) {
+	fs.readdirSync(directory).forEach((file) => {
+		const fullPath = `${directory}/${file}`;
+		fs.rmSync(fullPath, { recursive: true, force: true });
+	});
+};
 
 const codePointToString = function(codePoint) {
 	return '0x' + codePoint.toString(16).toUpperCase();
