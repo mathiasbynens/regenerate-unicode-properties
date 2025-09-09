@@ -37,7 +37,6 @@
   },
   "devDependencies": {
     "@unicode/unicode-17.0.0": "^1.6.11",
-    "fs-extra": "^11.2.0",
     "jsesc": "^3.0.2",
     "unicode-canonical-property-names-ecmascript": "^2.0.1"
   },
