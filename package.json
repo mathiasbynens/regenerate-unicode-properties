@@ -36,7 +36,7 @@
     "regenerate": "^1.4.2"
   },
   "devDependencies": {
-    "@unicode/unicode-17.0.0": "^1.6.12",
+    "@unicode/unicode-18.0.0": "^2.0.7",
     "jsesc": "^3.1.0",
     "unicode-canonical-property-names-ecmascript": "^2.0.1"
   },
