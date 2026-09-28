@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const jsesc = require('jsesc');
 const regenerate = require('regenerate');
 const UNICODE_VERSION = require('./unicode-version.js');
-const unicode = require(`@unicode/unicode-${ UNICODE_VERSION }`);
+const { default: unicode } = require(`@unicode/unicode-${ UNICODE_VERSION }`);
 
 /*----------------------------------------------------------------------------*/
 
@@ -84,8 +84,8 @@ for (const property of nonBinaryProperties) {
 		values.push(value);
 		const fileName = `${ directory }/${ value }.js`;
 		console.log(`Creating ${ fileName }…`);
-		const codePoints = require(
-			`@unicode/unicode-${ UNICODE_VERSION }/${ property }/${ value }/code-points.js`
+		const { default: codePoints } = require(
+			`@unicode/unicode-${ UNICODE_VERSION }/${ property }/${ value }/code-points.mjs`
 		);
 		const set = regenerate(codePoints);
 		const output = `${ set.toCode() }\nexports.characters = set;\n`;
@@ -109,8 +109,8 @@ emptyDirSync(directory);
 for (const property of binaryProperties) {
 	const fileName = `${ directory }/${ property }.js`;
 	console.log(`Creating ${ fileName }…`);
-	const codePoints = require(
-		`@unicode/unicode-${ UNICODE_VERSION }/Binary_Property/${ property }/code-points.js`
+	const { default: codePoints } = require(
+		`@unicode/unicode-${ UNICODE_VERSION }/Binary_Property/${ property }/code-points.mjs`
 	);
 	const set = regenerate(codePoints);
 	const output = `${ set.toCode() }\nexports.characters = set;\n`;
@@ -140,7 +140,7 @@ emptyDirSync(posDirectory);
 for (const property of propertiesOfStrings) {
 	const fileName = `${ posDirectory }/${ property }.js`;
 	console.log(`Creating ${ fileName }…`);
-	const rawStrings = require(`@unicode/unicode-${ UNICODE_VERSION }/Sequence_Property/${ property }/index.js`);
+	const { default: rawStrings } = require(`@unicode/unicode-${ UNICODE_VERSION }/Sequence_Property/${ property }/index.mjs`);
 	const codePoints = [];
 	const strings = [];
 	for (const rawString of rawStrings) {
