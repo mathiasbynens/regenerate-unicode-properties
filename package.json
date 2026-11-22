@@ -38,7 +38,7 @@
   "devDependencies": {
     "@unicode/unicode-18.0.0": "^2.0.7",
     "jsesc": "^3.1.0",
-    "unicode-canonical-property-names-ecmascript": "^2.0.1"
+    "unicode-canonical-property-names-ecmascript": "^3.0.0"
   },
   "scripts": {
     "build": "node build.js",
